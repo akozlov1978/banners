@@ -1,0 +1,65 @@
+mixin flip-clock()
+    span.flip-clock-divider.days
+        span.flip-clock-label.flipclock__label-days дней
+    ul.flip
+        li.flip-clock-active
+            a(href='#')
+                .up
+                    .shadow
+                    .inn.flipclock__days-a 0
+                .down
+                    .shadow
+                    .inn.flipclock__days-a 0
+    ul.flip
+        li.flip-clock-active
+            a(href='#')
+                .up
+                    .shadow
+                    .inn.flipclock__days-b 0
+                .down
+                    .shadow
+                    .inn.flipclock__days-b 0
+    span.flip-clock-divider.hours
+        span.flip-clock-label.flipclock__label-hours часов
+        span.flip-clock-dot.top
+        span.flip-clock-dot.bottom
+    ul.flip
+        li.flip-clock-active
+            a(href='#')
+                .up
+                    .shadow
+                    .inn.flipclock__hours-a 0
+                .down
+                    .shadow
+                    .inn.flipclock__hours-a 0
+    ul.flip
+        li.flip-clock-active
+            a(href='#')
+                .up
+                    .shadow
+                    .inn.flipclock__hours-b 0
+                .down
+                    .shadow
+                    .inn.flipclock__hours-b 0
+    span.flip-clock-divider.minutes
+        span.flip-clock-label.flipclock__label-minutes минут
+        span.flip-clock-dot.top
+        span.flip-clock-dot.bottom
+    ul.flip
+        li.flip-clock-active
+            a(href='#')
+                .up
+                    .shadow
+                    .inn.flipclock__minutes-a 0
+                .down
+                    .shadow
+                    .inn.flipclock__minutes-a 0
+    ul.flip.play
+        li.flip-clock-active
+            a(href='#')
+                .up
+                    .shadow
+                    .inn.flipclock__minutes-b 0
+                .down
+                    .shadow
+                    .inn.flipclock__minutes-b 0
