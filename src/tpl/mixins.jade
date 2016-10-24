@@ -1,65 +1,16 @@
-mixin flip-clock()
-    span.flip-clock-divider.days
-        span.flip-clock-label.flipclock__label-days дней
-    ul.flip
-        li.flip-clock-active
-            a(href='#')
-                .up
-                    .shadow
-                    .inn.flipclock__days-a 0
-                .down
-                    .shadow
-                    .inn.flipclock__days-a 0
-    ul.flip
-        li.flip-clock-active
-            a(href='#')
-                .up
-                    .shadow
-                    .inn.flipclock__days-b 0
-                .down
-                    .shadow
-                    .inn.flipclock__days-b 0
-    span.flip-clock-divider.hours
-        span.flip-clock-label.flipclock__label-hours часов
-        span.flip-clock-dot.top
-        span.flip-clock-dot.bottom
-    ul.flip
-        li.flip-clock-active
-            a(href='#')
-                .up
-                    .shadow
-                    .inn.flipclock__hours-a 0
-                .down
-                    .shadow
-                    .inn.flipclock__hours-a 0
-    ul.flip
-        li.flip-clock-active
-            a(href='#')
-                .up
-                    .shadow
-                    .inn.flipclock__hours-b 0
-                .down
-                    .shadow
-                    .inn.flipclock__hours-b 0
-    span.flip-clock-divider.minutes
-        span.flip-clock-label.flipclock__label-minutes минут
-        span.flip-clock-dot.top
-        span.flip-clock-dot.bottom
-    ul.flip
-        li.flip-clock-active
-            a(href='#')
-                .up
-                    .shadow
-                    .inn.flipclock__minutes-a 0
-                .down
-                    .shadow
-                    .inn.flipclock__minutes-a 0
-    ul.flip.play
-        li.flip-clock-active
-            a(href='#')
-                .up
-                    .shadow
-                    .inn.flipclock__minutes-b 0
-                .down
-                    .shadow
-                    .inn.flipclock__minutes-b 0
+mixin countdown-timer()
+    .b-countdown-timer
+        .b-countdown-timer__inner
+            +countdown-timer-flip('Неделя',  'weeks')
+            +countdown-timer-flip('Дни',     'days')
+            +countdown-timer-flip('Часы',    'hours')
+            +countdown-timer-flip('Минуты',  'minutes')
+            +countdown-timer-flip('Секунды', 'seconds')
+
+mixin countdown-timer-flip(flipTitle, flipClass)
+    .e-timer-item(class= flipClass) #time flip hours
+        span.count.curr.top 00
+        span.count.next.top 09
+        span.count.next.bottom 09
+        span.count.curr.bottom 00
+        span.e-timer-item__label= flipTitle

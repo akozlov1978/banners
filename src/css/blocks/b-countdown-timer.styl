@@ -1,0 +1,78 @@
+.b-countdown-timer
+    margin 0 auto
+    padding 20px 0
+    width 360px
+    
+    &__inner
+        height 130px
+        
+.e-timer-item
+    border-radius 5px
+    box-shadow 0 0 10px 0 rgba(0,0,0,0.5)
+    display inline-block
+    text-align center
+    position relative
+    height 3em
+    width 4em
+    perspective 10em
+    backface-visibility hidden
+    transform translateZ(0)
+    transform translate3d(0,0,0)
+    
+    .count
+        background #202020
+        color #f8f8f8
+        display block
+        font 3em/1 sans-serif
+        overflow hidden
+        position absolute
+        text-align center
+        text-shadow 0 0 10px rgba(0, 0, 0, 0.8)
+        top 0
+        width 100%
+        transform translateZ(0)
+        transform-style flat
+        
+        &.top
+            border-top 1px solid rgba(255,255,255,0.2)
+            border-bottom 1px solid rgba(255,255,255,0.1)
+            border-radius 5px 5px 0 0
+            height 50%
+            transform-origin 50% 100%
+            
+            &.curr
+                transform rotateX(0deg)
+                z-index 3
+                
+        &.bottom
+            background-image linear-gradient(rgba(255,255,255,0.1), transparent)
+            border-top 1px solid #000
+            border-bottom 1px solid #000
+            border-radius 0 0 5px 5px
+            line-height 0
+            height 50%
+            top 50%
+            transform-origin 50% 0
+            
+            &.next
+                transform rotateX(90deg)
+                z-index 2
+            
+    &__label
+        font .8em/1.4 sans-serif
+        margin-top 5px
+        display block
+        position absolute
+        top 95px
+        width 100%
+        color #fff
+        
+    &.flip
+        .count.curr.top
+            transition all 250ms ease-in-out
+            transform rotateX(-90deg)
+        
+        .count.next.bottom
+            transition all 250ms ease-in-out 250ms
+            transform rotateX(0deg)           
+            

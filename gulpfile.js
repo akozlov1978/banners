@@ -22,7 +22,10 @@ gulp.task('default', ['tpl'], function() {
 gulp.task('styles', function() {
     // return is important here
     return gulp.src(PATH_TO_STYLES + 'index.styl')
-        .pipe(stylus({ compress: !settings.debug }))
+        .pipe(stylus({
+            'include css': true,
+            'compress'   : !settings.debug
+        }))
         .pipe(prefixer(['> 0%']))
         .pipe(rename('styles.css'))
         .pipe(gulp.dest(PATH_TO_TMP));
