@@ -43,7 +43,12 @@ gulp.task('scripts', function() {
 
 gulp.task('tpl', ['styles', 'scripts'], function() {
     return gulp.src(PATH_TO_JADE + 'index.jade')
-        .pipe(jade({ pretty: !settings.debug ? false : '    ' }))
+        .pipe(jade({
+            pretty: '    ',
+            locals: {
+                settings: settings
+            }
+        }))
         .pipe(rename({extname:'.html'}))
         .pipe(gulp.dest('.'));   
 });

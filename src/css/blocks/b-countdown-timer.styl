@@ -1,15 +1,28 @@
 .b-countdown-timer
-    margin 0 auto
-    padding 20px 0
-    width 360px
+    margin 0
+    padding 0
+    width 21em
+    
+    &__title
+        color #000
+        text-align center
+        font-size 1.3em
+        font-weight 100
+        line-height 2.2em
+        
+        .b-ip-banner--white &
+            color #fff
     
     &__inner
-        height 130px
+        &::after
+            content ''
+            display table
+            clear both
         
 .e-timer-item
     border-radius 5px
     box-shadow 0 0 10px 0 rgba(0,0,0,0.5)
-    display inline-block
+    display block
     text-align center
     position relative
     height 3em
@@ -18,12 +31,39 @@
     backface-visibility hidden
     transform translateZ(0)
     transform translate3d(0,0,0)
+    margin 0 1em 0 0
+    float left
+    
+    &::after, &::before
+        content ''
+        position absolute
+        right -.7em
+        display block
+        width .3em
+        height .3em
+        border-radius 50% 50%
+        background #000
+        
+    &::after
+        top 30%
+    &::before
+        bottom 30%
+
+        
+    &:last-child
+        margin 0
+        
+        &::after, &::before
+            content ''
+            display none
     
     .count
         background #202020
         color #f8f8f8
         display block
-        font 3em/1 sans-serif
+        font 2.4em/1.2 sans-serif
+        letter-spacing .2em
+        text-indent .2em
         overflow hidden
         position absolute
         text-align center
@@ -33,12 +73,21 @@
         transform translateZ(0)
         transform-style flat
         
+        .b-ip-banner--white &
+            color #333
+            background #e0e0e0
+            text-shadow 0 0 10px rgba(255, 255, 255, 0.8)
+        
         &.top
             border-top 1px solid rgba(255,255,255,0.2)
             border-bottom 1px solid rgba(255,255,255,0.1)
             border-radius 5px 5px 0 0
             height 50%
             transform-origin 50% 100%
+            
+            .b-ip-banner--white &
+                border-top 1px solid rgba(0,0,0,0.2)
+                border-bottom 1px solid rgba(0,0,0,0.1)
             
             &.curr
                 transform rotateX(0deg)
@@ -54,18 +103,25 @@
             top 50%
             transform-origin 50% 0
             
+            .b-ip-banner--white &
+                background-image linear-gradient(rgba(0,0,0,0.1), transparent)
+                border-top 1px solid #fff
+                border-bottom 1px solid #fff
+            
             &.next
                 transform rotateX(90deg)
                 z-index 2
             
     &__label
-        font .8em/1.4 sans-serif
-        margin-top 5px
+        font 1em/1 sans-serif
         display block
         position absolute
-        top 95px
+        top 3.4em
         width 100%
-        color #fff
+        color #000
+        
+        .b-ip-banner--white &
+            color #fff
         
     &.flip
         .count.curr.top
