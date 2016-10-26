@@ -1,16 +1,17 @@
 $ ->
 
     timer = () ->
-        numFormat = (num) ->
-            if num < 10 then return "0#{num}"
-            else return num
+        numFormat = (num) -> if num < 10 then return "0#{num}" else return num
+        removeClass = ($items, className) ->
+            $items.forEach ($item) ->
+                $item.className = $item.className.replace /\sflip/ig, ''
 
-        endDate = new Date $('.js-countdown-timer').attr('data-finaldate')
+        endDate = new Date document.querySelector('.js-countdown-timer').getAttribute 'data-finaldate'
         nowDate = new Date
         totalSecsLeft = endDate.getTime() - nowDate.getTime()
         totalSecsLeft = Math.abs totalSecsLeft / 1e3
-        $items = $ '.js-countdown-timer-container .e-timer-item'
-        $items.removeClass 'flip'
+        $items = document.querySelectorAll '.js-countdown-timer-container .e-timer-item'
+        removeClass $items, 'flip'
 
         offsets =
             seconds: Math.floor totalSecsLeft % 60
@@ -19,17 +20,16 @@ $ ->
             days:    Math.floor(totalSecsLeft / 60 / 60 / 24) % 7
 
         for key, value of offsets
-            $items.removeClass 'flip'
-            $item = $items.filter ".#{key}"
+            removeClass $items, 'flip'
+            $item = ($item for $item in $items when $item.className.match /#{key}/)[0]
+            #$item = $items.querySelector ".#{key}"
             
-            $item
-                .find '.curr.top, .curr.bottom'
-                .text $item.find('.next.top').text()
-            $item
-                .find '.next.top, .next.bottom'
-                .text numFormat(value)
+            $item.querySelector '.curr.top, .curr.bottom'
+                .innerText = $item.querySelector('.next.top').innerText
+            $item.querySelector '.next.top, .next.bottom'
+                .innerText = numFormat(value)
 
-            if parseInt($item.find('.curr.top').text()) != parseInt($item.find('.next.top').text())
+            if parseInt($item.querySelector('.curr.top').innerText) != parseInt($item.querySelector('.next.top').innerText)
                 $item.addClass 'changed'
                 setTimeout () =>
                     $items.filter '.changed'

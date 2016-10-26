@@ -15,3 +15,22 @@ mixin countdown-timer-flip(flipTitle, flipClass)
         span.count.next.bottom 00
         span.count.curr.bottom 00
         span.e-timer-item__label= flipTitle
+
+mixin b-timer(title, finalDate)
+    .b-timer
+        .b-timer__title= title
+        .b-timer__inner
+            +b-timer-count('дд', 'days')
+            +b-timer-count('чч', 'hours')
+            +b-timer-count('мм', 'minutes')
+            +b-timer-count('сс', 'seconds')
+
+mixin b-timer-count(title, type)
+    .b-timer__count.b-count(class="b-count--#{type}")
+        .b-count__part
+            .b-count__part-num(data-current="0" data-next="1" class="b-count__part-num--top")
+            .b-count__part-num(data-current="0" data-next="1" class="b-count__part-num--bottom")
+        .b-count__part
+            .b-count__part-num(data-current="0" data-next="2" class="b-count__part-num--top")
+            .b-count__part-num(data-current="0" data-next="2" class="b-count__part-num--bottom")
+        .b-count__title= title

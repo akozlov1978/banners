@@ -1,2 +1,89 @@
-.b-countdown-timer
-	display block
+.b-timer
+    display inline-block
+    
+    &__title
+        color #000
+        text-align center
+        font-size 1.3em
+        font-weight 100
+        line-height 2.2em
+        
+    &__inner
+        &::after
+            content ''
+            display table
+            clear both
+            
+    &__count
+        float left
+        
+.b-count
+    text-align center
+    font-size 2em
+    margin 0 .1em
+    
+    &::after
+        content ''
+        display table
+        clear both
+        
+    &__title
+        font-size .5em
+    
+    &__part
+        float left
+        position relative
+        
+        &:first-child
+            margin-right .1em
+            
+        &-num
+            border-radius 5px
+            box-shadow 0 0 10px 0 rgba(0,0,0,0.5)
+            text-align center
+            position relative
+            perspective 4em
+            
+
+               
+            &::before, &::after
+                position relative
+                padding 0 .1em
+                display block
+                height .5em
+                overflow hidden
+                box-sizing border-box
+                text-shadow 0 0 10px rgba(255, 255, 255, 0.8)
+                
+            &::before
+                //content attr(data-current)
+                //top 0
+                border-top solid 1px rgba(0,0,0,0.2)
+                background-image linear-gradient(#fff, #e0e0e0)
+                border-radius 5px 5px 0 0
+                //transform-origin bottom
+                //backface-visibility hidden
+                
+                            
+            &::after
+                //content attr(data-next)
+                //bottom 0
+                border-top solid 1px #fff
+                background-image linear-gradient(#e0e0e0, #fff)
+                border-radius 0 0 5px 5px
+                line-height 0
+                
+            &--top
+                &::before
+                    content attr(data-current)
+                    transform-origin bottom
+                    transform rotateX(-20deg)                    
+                
+            &--bottom
+                position absolute
+                top 0
+                
+                &::after
+                    content attr(data-next)
+                    transform-origin top
+                    transform rotateX(70deg)
