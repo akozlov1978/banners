@@ -9,12 +9,5 @@ html
             .b-ip-banner__part.b-ip-banner__part--left
             .b-ip-banner__part.b-ip-banner__part--right
                 .b-ip-banner__part-inner
-                    +countdown-timer(
-                        'До акции осталось',
-                        '2016-11-25 00:00:00',
-                        'js-countdown-timer')
-
                     +b-timer('До акции осталось', '2016-11-25 00:00:00')
-
-        script(type="text/javascript"): include ../js/jquery.min.js
         script(type="text/javascript"): include ../.tmp/scripts.js

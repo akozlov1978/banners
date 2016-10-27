@@ -1,23 +1,5 @@
-mixin countdown-timer(title, finalDate, className)
-    - className = className || '';
-    .b-countdown-timer(class= className, data-finaldate= finalDate)
-        .b-countdown-timer__title= title
-        .b-countdown-timer__inner.js-countdown-timer-container
-            +countdown-timer-flip('дд', 'days')
-            +countdown-timer-flip('чч', 'hours')
-            +countdown-timer-flip('мм', 'minutes')
-            +countdown-timer-flip('сс', 'seconds')
-
-mixin countdown-timer-flip(flipTitle, flipClass)
-    .e-timer-item(class= flipClass)
-        span.count.curr.top 00
-        span.count.next.top 00
-        span.count.next.bottom 00
-        span.count.curr.bottom 00
-        span.e-timer-item__label= flipTitle
-
 mixin b-timer(title, finalDate)
-    .b-timer
+    .b-timer.js-timer(data-finaldate= finalDate)
         .b-timer__title= title
         .b-timer__inner
             +b-timer-count('дд', 'days')
@@ -25,12 +7,13 @@ mixin b-timer(title, finalDate)
             +b-timer-count('мм', 'minutes')
             +b-timer-count('сс', 'seconds')
 
+
 mixin b-timer-count(title, type)
-    .b-timer__count.b-count(class="b-count--#{type}")
-        .b-count__part
-            .b-count__part-num(data-current="0" data-next="1" class="b-count__part-num--top")
-            .b-count__part-num(data-current="0" data-next="1" class="b-count__part-num--bottom")
-        .b-count__part
-            .b-count__part-num(data-current="0" data-next="2" class="b-count__part-num--top")
-            .b-count__part-num(data-current="0" data-next="2" class="b-count__part-num--bottom")
+    .b-timer__count.b-count.js-timer-count(class="js-timer-count--#{type}")
+        .b-count__part.js-timer-count__part
+            .b-count__part-num(data-current="0" data-next="0")
+            .b-count__part-num(data-current="0" data-next="0" class="b-count__part-num--active")
+        .b-count__part.js-timer-count__part
+            .b-count__part-num(data-current="0" data-next="0")
+            .b-count__part-num(data-current="0" data-next="0" class="b-count__part-num--active")
         .b-count__title= title

@@ -2,11 +2,12 @@
     display inline-block
     
     &__title
-        color #000
+        color #fff
         text-align center
-        font-size 1.3em
+        font-size 1em
         font-weight 100
         line-height 2.2em
+        letter-spacing .05em
         
     &__inner
         &::after
@@ -18,17 +19,36 @@
         float left
         
 .b-count
+    position relative
     text-align center
     font-size 2em
-    margin 0 .1em
+    margin 0 .25em
     
-    &::after
+    &::after, &::before
         content ''
-        display table
-        clear both
+        position absolute
+        right -.3em
+        display block
+        width .1em
+        height .1em
+        border-radius 50% 50%
+        background #fff
+        
+    &::before
+        top .2em
+    &::after
+        top .7em
+        
+    &:last-child
+        &::after, &::before
+            display none
         
     &__title
         font-size .5em
+        font-weight 100
+        line-height 2em
+        color #fff
+        
     
     &__part
         float left
@@ -42,9 +62,8 @@
             box-shadow 0 0 10px 0 rgba(0,0,0,0.5)
             text-align center
             position relative
-            perspective 4em
-            
-
+            perspective 2em
+            height 1em
                
             &::before, &::after
                 position relative
@@ -53,37 +72,37 @@
                 height .5em
                 overflow hidden
                 box-sizing border-box
-                text-shadow 0 0 10px rgba(255, 255, 255, 0.8)
-                
+
             &::before
-                //content attr(data-current)
-                //top 0
-                border-top solid 1px rgba(0,0,0,0.2)
-                background-image linear-gradient(#fff, #e0e0e0)
-                border-radius 5px 5px 0 0
-                //transform-origin bottom
-                //backface-visibility hidden
-                
-                            
+                content attr(data-next)
+                background-image linear-gradient(#fff, #ddd)
+                border-radius .1em .1em 0 0
+                border-bottom solid 1px #fff
+
             &::after
-                //content attr(data-next)
-                //bottom 0
-                border-top solid 1px #fff
-                background-image linear-gradient(#e0e0e0, #fff)
-                border-radius 0 0 5px 5px
+                content attr(data-current)
+                background-image linear-gradient(#ddd, #fff)
+                border-radius 0 0 .1em .1em
                 line-height 0
                 
-            &--top
+            &--active
+                position absolute
+                top 0
+
                 &::before
                     content attr(data-current)
                     transform-origin bottom
-                    transform rotateX(-20deg)                    
-                
-            &--bottom
-                position absolute
-                top 0
-                
+                    transform rotateX(0deg)
+
+                    .flip &
+                        transform rotateX(-90deg)
+                        transition all 250ms ease-in-out
+
                 &::after
                     content attr(data-next)
                     transform-origin top
-                    transform rotateX(70deg)
+                    transform rotateX(-90deg)
+
+                    .flip &
+                        transform rotateX(0deg)
+                        transition all 250ms ease-in-out 250ms
