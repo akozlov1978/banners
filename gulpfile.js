@@ -13,6 +13,7 @@ var gulp = require('gulp'),
 var PATH_TO_STYLES  = 'src/css/',
     PATH_TO_SCRIPTS = 'src/js/',
     PATH_TO_JADE    = 'src/tpl/',
+    PATH_TO_BLOCKS  = 'src/tpl/blocks/*.jade',
     PATH_TO_TMP     = 'src/.tmp/';
 
 gulp.task('default', ['tpl'], function() {
@@ -39,6 +40,18 @@ gulp.task('scripts', function() {
         .pipe(gulpif(!settings.debug, minifyJS({ compress: true, noSource: true })))
         .pipe(rename('scripts.js'))
         .pipe(gulp.dest(PATH_TO_TMP));
+});
+
+gulp.task('blocks', function() {
+    return gulp.src(PATH_TO_BLOCKS)
+        .pipe(jade({
+            pretty: false,
+            locals: {
+                settings: settings
+            }
+        }))
+        .pipe(rename({extname:'.html'}))
+        .pipe(gulp.dest(PATH_TO_TMP));    
 });
 
 gulp.task('tpl', ['styles', 'scripts'], function() {
